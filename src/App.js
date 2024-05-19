@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import btnModule from "./Button.module.css"; // Ensure this file exists and is used appropriately
+import { question } from './DATA/user';
 
 function App() {
+  let [showans, setShowans] = useState(question[0].id);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className='FAQ'>Frequently Asked Questions (FAQs)</h1>
+      <div className='faqouter'>
+        {question.map((faqitem, i) => (
+          <div className="faqitems" key={faqitem.id}> 
+            <h2 onClick={() => setShowans(faqitem.id)}>{faqitem.title}</h2>
+            <p className={showans === faqitem.id ? 'activeans' : ''}>{faqitem.body}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
