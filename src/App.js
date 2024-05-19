@@ -1,24 +1,56 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import btnModule from "./Button.module.css"; // Ensure this file exists and is used appropriately
-import { question } from './DATA/user';
+import React from 'react'
 
-function App() {
-  let [showans, setShowans] = useState(question[0].id);
-
-  return (
-    <div className="App">
-      <h1 className='FAQ'>Frequently Asked Questions (FAQs)</h1>
-      <div className='faqouter'>
-        {question.map((faqitem, i) => (
-          <div className="faqitems" key={faqitem.id}> 
-            <h2 onClick={() => setShowans(faqitem.id)}>{faqitem.title}</h2>
-            <p className={showans === faqitem.id ? 'activeans' : ''}>{faqitem.body}</p>
-          </div>
-        ))}
+const Z = () => {
+  let [todolist, settodolist] = useState([])
+  let saveToDoList = (event) =>{
+    let toname = event.target.toname.value;
+    if(!todolist.includes(toname)){
+      let finaltodolist = [...todolist, toname];
+      settodolist(finaltodolist);
+    }
+    else{
+      alert("Item Already Exist");
+    }
+    
+    event.preventDefault()
+  }
+  let list = todolist.map((value,index) => {
+    return(
+      <ToDoListItem value={value} key={index} indexnumber = {index} todolist={todolist} settodolist={settodolist} />
+    )
+  })
+  return (    
+    <div className='container'>
+      <h1>ToDo List</h1>
+      <form action="" onSubmit={saveToDoList}>
+          <input type="text" name = "toname" />
+          <button>Save</button>
+      </form>
+      <div className='outerDiv'>
+        <ul>
+          {list}         
+        </ul>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default Z;
+
+function ToDoListItem({value, indexnumber,todolist,settodolist}){
+  let remove = () =>{
+    let finalData = todolist.filter(item => item !== todolist[indexnumber]);
+    settodolist(finalData);
+  }
+  let[linethrough, setlinethrough] = useState(false);
+  let checkStatus = () =>{
+    setlinethrough(!linethrough)
+  }
+
+  return(
+    <li className={linethrough ? 'completetodo': ''} onClick={checkStatus} >{value} <span onClick={remove}>&times;</span></li>
+  )
+}
+

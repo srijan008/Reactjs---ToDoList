@@ -1,31 +1,39 @@
-.FAQ{
+.container{
   text-align: center;
 }
-.faqouter{
-  width: 1320px;
+form{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+form input{
+  width: 900px;
+  height: 40px;
+}
+.outerDiv{
+  width: 900px;
   margin: auto;
 }
-.faqitems{
-  border: 1px solid red;
-  margin-bottom: 20px;
+.outerDiv ul{
+ 
+ list-style: none; 
 }
-.faqitems h2{
-  margin: 0px;
-  padding: 10px;
-  background-color: #2B2c34;
-  color: white;
+.outerDiv ul li{
+  color: aliceblue;
+  background-color: black;
   text-align: left;
+  padding: 5px;
+  border-radius: 3px;
+  position: relative;
+  margin-bottom: 10px;
 }
-.faqitems p{
-  text-align: left;
-  margin: 0px;
-  padding: 0px;
-  height: 0px;
-  transform: scaleY(0);
-  transition: 0.5s;
+.outerDiv ul li span{
+  cursor: pointer;
+  right: 20px;
+  position: absolute;
 }
-.activeans{
-  height: auto !important;
-  transform: scaleY(1) !important;
-  padding: 10px !important;
+.completetodo{
+  text-decoration: line-through;
+  color: red !important;
+  background-color: yellow !important;
 }
